@@ -199,12 +199,14 @@ Colocacionlining=[13 14 16 19 22 26];
 
 j=3; % 1 deformacion axial, 2 curvatura, 3 carga axial, 4 momentos
 figure
-inicio=5;
+inicio=1;
 final=260;
 for i=Colocacionlining
-    archivo1=strcat('Alpha05Fullslip',int2str(i));
+    archivo1=strcat('Alpha05Noslip',int2str(i));
     datos1=load(archivo1);
-    plotear=smooth(datos1(:,j));
+    archivo2=strcat('Alpha05Noslipsec',int2str(i));
+    datos2=load(archivo2);
+    plotear=smooth(datos1(:,j)+datos2(:,j));
     plotear=smooth(plotear);
     plotear=smooth(plotear);
     plotear=smooth(plotear);
@@ -458,9 +460,11 @@ final=260;
 j=4; % 1 deformacion axial, 2 curvatura, 3 carga axial, 4 momentos
 figure
 for i=Colocacionlining
-    archivo1=strcat('Alpha05Fullslip',int2str(i));
+    archivo1=strcat('Alpha05Noslip',int2str(i));
     datos1=load(archivo1);
-    plotear=smooth(datos1(:,j));
+    archivo2=strcat('Alpha05Noslipsec',int2str(i));
+    datos2=load(archivo2);
+    plotear=smooth(datos1(:,j)+datos2(:,j));
     plotear=smooth(plotear);
     plotear=smooth(plotear);
     plotear=smooth(plotear);
@@ -472,7 +476,9 @@ for i=Colocacionlining
     xlabel('\theta (?)')
     %legenda=[legenda, strcat('\gamma=',int2str())]
     ylabel('Momento (kN m)')
-    ylim([-20 30])
+    %ylabel('Curvatura (1/m)')
+    %ylim([-1.5 2.5]/1000)
+    ylim([-80 40])
 end
     %legend('\alpha=0.45', '\alpha=0.25','\alpha=0.1','\alpha=0.001')
    legend('\gamma=0.006%','\gamma=0.012%', '\gamma=0.024%', '\gamma=0.043%', '\gamma=0.06%', '\gamma=0.09%',  'Location', 'Northeast')
@@ -587,14 +593,25 @@ figure(123)
 plot(-datosmomentos(15:155)/1000,-cargasaxiales(15:155)/1000, '*')
 hold on
 plot(-datosmomentos1(15:155)/1000,-cargasaxiales1(15:155)/1000, '*')
-%MSFP=smooth(MSFP);
-plot(0.9*MSFP/1000000,PSFP/1000)
-plot(1*MSFP/1000000,PSFP/1000)
-legend('No-slip (no mayorados)', 'Full-slip (no mayorados)', '\phi(M-N) sostenimiento sin marco', 'M-N sostenimiento sin marco', 'Location', 'Northwest')
+%plot(0.9*MSFP/1000000,PSFP/1000, 'g')
+%plot(1*MSFP/1000000,PSFP/1000, 'k' )
+%plot(-0.9*MSFN/1000000,PSFN/1000, 'g')
+%plot(-1*MSFN/1000000,PSFN/1000, 'k')
+PSFPComp(1)=1*PSFPComp(1);
+PSFNComp(1)=1*PSFNComp(1);
+MSFPComp(1)=0;
+MSFNComp(1)=0;
+
+plot(0.9*MSFPComp/1000000,PSFPComp/1000, 'g')
+plot(1*MSFPComp/1000000,PSFPComp/1000, 'k' )
+plot(-0.9*MSFNComp/1000000,PSFNComp/1000, 'g')
+plot(-1*MSFNComp/1000000,PSFNComp/1000, 'k')
+
+legend('No-slip (no mayorados)', 'Full-slip (no mayorados)', '\phi(M-N) total sin marco', 'M-N total sin marco', 'Location', 'Northwest')
 xlabel('M (kN m)')
 ylabel('P (kN)')
-ylim([-40 140])
-xlim([-10 40])
+ylim([-200 1000])
+xlim([-100 100])
 %xlim([])
 set(gca, 'FontSize', 18, 'FontName','Times New Roman')
 

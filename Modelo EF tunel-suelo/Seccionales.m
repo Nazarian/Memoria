@@ -366,8 +366,8 @@ M=importdata('sectionreac1-700000.tot.pos.out');
 phisp1=[phisp1 ,phi(:,2)];
 Msp1=[Msp1, M(:,2)];
 
-phi=importdata('DiagphiMTotal/sectiondisp1-2000000.tot.pos.out');
-M=importdata('DiagphiMTotal/sectionreac1-2000000.tot.pos.out');
+phi=importdata('DiagphiMTotalSM/sectiondisp1-2000000.tot.pos.out');
+M=importdata('DiagphiMTotalSM/sectionreac1-2000000.tot.pos.out');
 phisp1=[phisp1 ,phi(:,2)];
 Msp1=[Msp1, M(:,2)];
 
