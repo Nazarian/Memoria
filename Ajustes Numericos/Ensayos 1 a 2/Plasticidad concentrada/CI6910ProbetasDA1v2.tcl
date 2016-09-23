@@ -110,7 +110,7 @@ for {set i 1} {$i <= $nele} {incr i} {
 	#element nonlinearBeamColumn $i $i $j $numIntgrPts 4 $transfTag
 	#element forceBeamColumn $i $i $j $transfTag "HingeRadau 4 [expr 1*$colDepth] 4 [expr 1*$colDepth] 4"
 	#element dispBeamColumn $i $i $j $numIntgrPts 4 $transfTag
-	element beamWithHinges $i $i $j 4 [expr 0.7*$colDepth] 4 [expr 0.7*$colDepth] $Ec $A $I $transfTag
+	element beamWithHinges $i $i $j 4 [expr 1*$colDepth] 4 [expr 1*$colDepth] $Ec $A $I $transfTag
 	
 }
 

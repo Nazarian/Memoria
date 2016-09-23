@@ -2,7 +2,7 @@ wipe all
 model basic -ndm 2 -ndf 3
 
 # constantes
-set L 1300; # m
+set L 1500; # m
 set nele 20; # numero de elementos
 set nnodos [expr $nele+1]; # numero de nodos
 set numIntgrPts 3; # puntos de integracion

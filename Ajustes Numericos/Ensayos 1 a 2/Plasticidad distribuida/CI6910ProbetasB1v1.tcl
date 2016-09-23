@@ -3,7 +3,7 @@ model basic -ndm 2 -ndf 3
 
 # constantes
 set L 1500; # m
-set nele 10; # numero de elementos
+set nele 30; # numero de elementos
 set nnodos [expr $nele+1]; # numero de nodos
 set numIntgrPts 3; # puntos de integracion
 set transfTag 1; # transformacion geometrica

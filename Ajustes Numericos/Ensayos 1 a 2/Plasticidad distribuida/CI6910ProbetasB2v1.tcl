@@ -3,7 +3,7 @@ model basic -ndm 2 -ndf 3
 
 # constantes
 set L 1500; # m
-set nele 10; # numero de elementos
+set nele 30; # numero de elementos
 set nnodos [expr $nele+1]; # numero de nodos
 set numIntgrPts 3; # puntos de integracion
 set transfTag 1; # transformacion geometrica
@@ -44,12 +44,12 @@ uniaxialMaterial ConcreteCM $matTag $fpcc $epcc $Ec $rc $xcrn $ft $et $rt $xcrp 
 
 # ReinforcingSteel A630S
 set matTag 99
-set fy	420
-set fu	650
+set fy	450
+set fu	680
 set Es	200000
 set Esh	150000
-set esh	[expr 1.1*$fy/$Es]
-set eult	0.24
+set esh	[expr 1.2*$fy/$Es]
+set eult	0.19
 set meult	[expr -$eult]
 
 uniaxialMaterial ReinforcingSteel $matTag $fy $fu $Es $Esh $esh $eult -IsoHard	3.0 0.01

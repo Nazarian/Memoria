@@ -50,7 +50,7 @@ set fu	750
 set Es	200000
 set Esh	150000
 set esh	[expr 1.01*$fy/$Es]
-set eult	0.02
+set eult	0.018
 set meult	[expr -$eult]
 
 uniaxialMaterial ReinforcingSteel $matTag $fy $fu $Es $Esh $esh $eult

@@ -113,7 +113,7 @@ for {set i 1} {$i <= $nele} {incr i} {
 	
 }
 
-set lcacho 300; ## mm
+set lcacho 500; ## mm
 node 1001 [expr -$lcacho] 0.0 ;
 node 1002 [expr $L+$lcacho] 0.0;
 

@@ -2,10 +2,10 @@ wipe all
 model basic -ndm 2 -ndf 3
 
 # constantes
-set L 450; # m
+set L 500; # m
 set nele 2; # numero de elementos
 set nnodos [expr $nele+1]; # numero de nodos
-set numIntgrPts 5; # puntos de integracion
+set numIntgrPts 3; # puntos de integracion
 set transfTag 1; # transformacion geometrica
 set intType "Legendre"; #cuadratura de gauss-legendre
 geomTransf Corotational $transfTag

@@ -48,7 +48,7 @@ set fy	450
 set fu	680
 set Es	200000
 set Esh	150000
-set esh	[expr 1.2*$fy/$Es]
+set esh	[expr 1.25*$fy/$Es]
 set eult	0.09
 set meult	[expr -$eult]
 

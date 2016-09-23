@@ -49,7 +49,7 @@ set fu	750
 set Es	200000
 set Esh	150000
 set esh	[expr 1.01*$fy/$Es]
-set eult	0.015
+set eult	0.018
 set meult	[expr -$eult]
 
 uniaxialMaterial ReinforcingSteel $matTag $fy $fu $Es $Esh $esh $eult
@@ -63,7 +63,7 @@ set numSubdivZ	1
 set As	[expr 4.2*4.2*3.1415/4]
 
 set colWidth 500
-set colDepth 155
+set colDepth 150
 set cover 20
 set cover2 30
 
@@ -95,7 +95,7 @@ for {set i 1} {$i <= $nele} {incr i} {
 }
 
 
-set lcacho 1; ## mm
+set lcacho 500; ## mm
 node 1001 [expr -$lcacho] 0.0 ;
 node 1002 [expr $L+$lcacho] 0.0;
 

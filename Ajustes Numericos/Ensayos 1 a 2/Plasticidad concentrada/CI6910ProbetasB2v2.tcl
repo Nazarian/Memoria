@@ -30,7 +30,7 @@ set matTag 4
 set fpcc	-55
 set epcc	-0.0025
 set Ec	23000
-set rc	7
+set rc	8
 set xcrn	1.035
 set ft	2
 set et	0.00012
@@ -96,7 +96,7 @@ section Fiber 4 {
 	# barras del 22
 	layer straight 9 2 $As2 [expr $cover+15-$y1] [expr -$cover] [expr $cover+15-$y1] [expr +$cover]  
 	#barra del 28
-	fiber [expr $y1-$cover-10] 0 $As3 9
+	fiber [expr $y1-$cover] 0 $As3 9
 }
 
 

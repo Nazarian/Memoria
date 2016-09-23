@@ -5,7 +5,7 @@ model basic -ndm 2 -ndf 3
 set L 400; # mm
 set nele 2; # numero de elementos
 set nnodos [expr $nele+1]; # numero de nodos
-set numIntgrPts 2; # puntos de integracion
+set numIntgrPts 3; # puntos de integracion
 set transfTag 1; # transformacion geometrica
 set intType "Legendre"; #cuadratura de gauss-legendre
 geomTransf Corotational $transfTag
@@ -49,7 +49,7 @@ set fu	680
 set Es	200000
 set Esh	20000
 set esh	[expr 1.2*$fy/$Es]
-set eult	0.2
+set eult	0.07
 set meult	[expr -$eult]
 
 uniaxialMaterial ReinforcingSteel $matTag $fy $fu $Es $Esh $esh $eult

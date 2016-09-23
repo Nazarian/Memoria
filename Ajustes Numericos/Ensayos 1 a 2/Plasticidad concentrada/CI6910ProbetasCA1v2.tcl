@@ -2,10 +2,10 @@ wipe all
 model basic -ndm 2 -ndf 3
 
 # constantes
-set L 400; # m
+set L 420; # m
 set nele 2; # numero de elementos
 set nnodos [expr $nele+1]; # numero de nodos
-set numIntgrPts 5; # puntos de integracion
+set numIntgrPts 3; # puntos de integracion
 set transfTag 1; # transformacion geometrica
 set intType "Legendre"; #cuadratura de gauss-legendre
 geomTransf Corotational $transfTag
@@ -32,7 +32,7 @@ set epcc	-0.0035
 set Ec	25000
 set rc	8
 set xcrn	1.035
-set ft	3.5
+set ft	3.0
 set et	0.00012
 set rt	0.6
 set xcrp	10000
@@ -107,7 +107,7 @@ for {set i 1} {$i <= $nele} {incr i} {
 	#element nonlinearBeamColumn $i $i $j $numIntgrPts 4 $transfTag
 	#element forceBeamColumn $i $i $j $transfTag "HingeRadau 4 [expr 1*$colDepth] 4 [expr 1*$colDepth] 4"
 	#element dispBeamColumn $i $i $j $numIntgrPts 4 $transfTag
-	element beamWithHinges $i $i $j 4 [expr 1.3*$colDepth] 4 [expr 1.3*$colDepth] $Ec $A $I $transfTag
+	element beamWithHinges $i $i $j 4 [expr 1.0*$colDepth] 4 [expr 1.0*$colDepth] $Ec $A $I $transfTag
 	
 }
 

@@ -49,7 +49,7 @@ set fu	700
 set Es	200000
 set Esh	150000
 set esh	[expr 1.01*$fy/$Es]
-set eult	0.017
+set eult	0.015
 set meult	[expr -$eult]
 
 uniaxialMaterial ReinforcingSteel $matTag $fy $fu $Es $Esh $esh $eult
@@ -155,7 +155,7 @@ pattern Plain 2 Linear {
 }
 
 constraints Plain
-test FixedNumIter 2 1
+test FixedNumIter 20 1
 #test NormDispIncr 1.e-6 200 5
 algorithm Newton
 #algorithm BFGS
