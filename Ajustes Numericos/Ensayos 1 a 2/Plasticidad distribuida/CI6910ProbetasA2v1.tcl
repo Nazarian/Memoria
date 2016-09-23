@@ -3,7 +3,7 @@ model basic -ndm 2 -ndf 3
 
 # constantes
 set L 1500; # mm
-set nele 20; # numero de elementos
+set nele 8; # numero de elementos
 set nnodos [expr $nele+1]; # numero de nodos
 set numIntgrPts 3; # puntos de integracion
 set transfTag 1; # transformacion geometrica
@@ -92,7 +92,6 @@ for {set i 1} {$i <= $nele} {incr i} {
 	#element forceBeamColumn $i $i $j $transfTag "HingeRadau 4 [expr 1*$colDepth] 4 [expr 1*$colDepth] 4"
 	element dispBeamColumn $i $i $j $numIntgrPts 4 $transfTag
 	#element beamWithHinges $i $i $j 4 [expr 0.6*$colDepth] 4 [expr 0.6*$colDepth] $Ec $A $I $transfTag
-	
 }
 
 
@@ -102,7 +101,7 @@ set lcacho 500; ## mm
 node 1001 [expr -$lcacho] 0.0 ;
 node 1002 [expr $L+$lcacho] 0.0;
 
-set Einf 2000000;
+set Einf 20000000;
 set Ainf 1000000; 
 set Izinf 1000000000000;
 
@@ -117,7 +116,8 @@ set nodocentral [expr ($nnodos+1)/2]
 recorder Node -file ProbetasA2disp2.out -time -closeOnWrite -node $nodocentral -dof 2 disp
 recorder Node -file ProbetasA2reac2.out -time -closeOnWrite -node 1 [expr 1+$nele/15] [expr $nnodos-$nele/15] $nnodos -dof 2 reaction
 
-set Cargaaxial 190000; # Newton 
+#set Cargaaxial 200000; # Newton 
+set Cargaaxial 2000; # Newton 
 
 pattern Plain 1 Constant {
 	load 1001 $Cargaaxial 0.0 0.0
@@ -144,10 +144,7 @@ analysis Static
  
 analyze 1 
  
- 
- 
-set nanalize 140
-
+set nanalize 300
 set stepanalisis [expr -40.0/$nanalize]
 
 pattern Plain 2 Linear {
@@ -155,8 +152,8 @@ pattern Plain 2 Linear {
 }
 
 constraints Plain
-test FixedNumIter 20 1
-#test NormDispIncr 1.e-6 200 5
+#test FixedNumIter 20 1
+test NormDispIncr 1.e-9 200 5
 algorithm Newton
 #algorithm BFGS
 #algorithm ModifiedNewton -initial
@@ -172,6 +169,5 @@ integrator DisplacementControl  $nodocentral  2 $stepanalisis
 analysis Static
 
 analyze $nanalize
-
 
 puts "OK"

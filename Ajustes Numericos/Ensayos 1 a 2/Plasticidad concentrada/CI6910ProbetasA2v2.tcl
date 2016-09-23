@@ -2,7 +2,7 @@ wipe all
 model basic -ndm 2 -ndf 3
 
 # constantes
-set L 1500; # m
+set L 1500; # mm
 set nele 2; # numero de elementos
 set nnodos [expr $nele+1]; # numero de nodos
 set numIntgrPts 3; # puntos de integracion
@@ -115,10 +115,8 @@ set nodocentral [expr ($nnodos+1)/2]
 
 recorder Node -file ProbetasA2disp.out -time -closeOnWrite -node $nodocentral -dof 2 disp
 recorder Node -file ProbetasA2reac.out -time -closeOnWrite -node 1 [expr 1+$nele/15] [expr $nnodos-$nele/15] $nnodos -dof 2 reaction
-recorder Element -file caca.out -time -closeOnWrite -ele 1 $nele force
 
-
-set Cargaaxial 190000; # Newton 
+set Cargaaxial 2000; # Newton 
 
 pattern Plain 1 Constant {
 	load 1001 $Cargaaxial 0.0 0.0
@@ -153,8 +151,8 @@ pattern Plain 2 Linear {
 }
 
 constraints Plain
-test FixedNumIter 20 1
-#test NormDispIncr 1.e-9 100 5
+#test FixedNumIter 20 1
+test NormDispIncr 1.e-9 100 5
 algorithm Newton
 #algorithm BFGS
 #algorithm ModifiedNewton -initial
@@ -163,8 +161,7 @@ numberer Plain
 #system BandSPD
 #system ProfileSPD
 #system SparseGEN
-#system UmfPack 
-system FullGeneral
+system UmfPack
 integrator DisplacementControl  $nodocentral  2 $stepanalisis
 #integrator DisplacementControl 5 3 -0.0001; # displacement control algorithm seking constant increment of 0.1 at node 1 at 2'nd dof.
 #analysis Transient 
